@@ -1,0 +1,19 @@
+
+devsync - Syncronize only the changed blocks between devices or files 
+---------------------------------------------------------------------
+
+$ gcc -O -o devsync devsync.c
+
+$ ./devsync /path/to/source /path/to/destination
+
+It uses a 4KB block size and only copies blocks which are not the same in
+both source and destination.
+
+
+
+Contact
+-------
+
+Email: andrew@modulus.org
+IRC: Andys^ on freenode
+

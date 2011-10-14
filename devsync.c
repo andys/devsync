@@ -1,3 +1,6 @@
+#define _FILE_OFFSET_BITS 64
+
+#include <stdint.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -164,13 +167,13 @@ main(int argc, char *argv[])
 
     if(update != time(NULL)) {
       update = time(NULL);
-      printf("Read %luMB / Wrote %luMB  \r", n * BLOCK_SIZE >> 20, bytes_written >> 20);
+      printf("Read %jdMB / Wrote %jdMB  \r", (intmax_t)n * BLOCK_SIZE >> 20, (intmax_t)bytes_written >> 20);
       fflush(stdout);
     }
   }
   flush_extent();
-  fprintf(stderr, "Finished: End of %s after %luMB.  ", src ? "destination" : "source", n * BLOCK_SIZE >> 20);
-  fprintf(stderr, "Wrote %luMB.\n", bytes_written >> 20);
+  fprintf(stderr, "Finished: End of %s after %jdMB.  ", src ? "destination" : "source", (intmax_t)n * BLOCK_SIZE >> 20);
+  fprintf(stderr, "Wrote %jdMB.\n", (intmax_t)bytes_written >> 20);
   return(0);
 }
 
